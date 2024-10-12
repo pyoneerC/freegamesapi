@@ -2,7 +2,19 @@ from fastapi import FastAPI
 import requests
 from datetime import datetime
 
+from starlette.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+origins = ["*"]  # Replace with your Flutter app's URL in production
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 API_URL = 'https://www.gamerpower.com/api/giveaways'
 
